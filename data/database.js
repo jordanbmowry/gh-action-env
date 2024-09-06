@@ -1,12 +1,10 @@
 import { MongoClient } from 'mongodb';
 
-// Environment variables
 const clusterAddress = process.env.MONGODB_CLUSTER_ADDRESS;
 const dbUser = process.env.MONGODB_USERNAME;
 const dbPassword = process.env.MONGODB_PASSWORD;
 const dbName = process.env.MONGODB_DB_NAME;
 
-// MongoDB URI
 const uri = `mongodb+srv://${dbUser}:${dbPassword}@${clusterAddress}/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri);
 
@@ -27,5 +25,7 @@ async function connectToDB() {
   }
 }
 
-// Exporting the database connection
-export const database = await connectToDB(); // Export the connected database
+const database = await connectToDB();
+
+// Export the database as default
+export default database;
